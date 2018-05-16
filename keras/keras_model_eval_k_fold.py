@@ -7,7 +7,6 @@ from keras.layers import Dense, Activation
 from sklearn.model_selection import StratifiedKFold
 from utils import gimme_network, gimme_path
 import numpy as np
-import os
 
 seed = 7
 np.random.seed(seed)
