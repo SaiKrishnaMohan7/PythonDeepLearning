@@ -27,7 +27,7 @@ X = pima[:,:8]
 Y = pima[:,8]
 
 
-model = KerasClassifier(build_fn=create_model, epochs=150, batch_size=10, verbose=0)
+model = KerasClassifier(build_fn=create_model, verbose=0)
 
 optimizers = ['rmsprop', 'adam']
 inits = ['glorot_uniform', 'normal', 'uniform']
