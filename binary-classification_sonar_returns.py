@@ -49,6 +49,7 @@ estimators.append(('mlp', estimator))
 pipeline = Pipeline(estimators)
 
 kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)
-results = cross_val_score(estimator, X, Y_en, cv=kfold)
+# results = cross_val_score(estimator, X, Y_en, cv=kfold)
+results = cross_val_score(pipeline, X, Y_en, cv=kfold)
 
 print("Accuracy: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
