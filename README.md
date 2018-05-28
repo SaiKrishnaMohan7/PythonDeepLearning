@@ -1,3 +1,3 @@
 # Deep Learning Python Repo
 
-  * Teaching myself, Deeplearning frameworks
+* Exploring Deeplearning frameworks
