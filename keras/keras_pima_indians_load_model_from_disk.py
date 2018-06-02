@@ -22,11 +22,11 @@ X = pima[:,:8]
 Y = pima[:,8]
 
 # load model architecture from memory
-with open('pima_model_arch.json', 'r') as json_file:
+with open(os.path.join('keras', 'pima_model_arch.json'), 'r') as json_file:
   loaded_model_json = json_file.read()
 
 # load model architecture from memory
-# with open('pima_model_arch.json', 'r') as yaml_file:
+# with open('pima_model_arch.yaml', 'r') as yaml_file:
 #   loaded_model_yaml = yaml_file.read()
 
 loaded_model = model_from_json(loaded_model_json)
@@ -34,11 +34,11 @@ loaded_model = model_from_json(loaded_model_json)
 # loaded_model = model_from_yaml(loaded_model_yaml)
 
 # load weights into new model
-loaded_model.load_weights('pima_model_weights.h5')
+loaded_model.load_weights(os.path.join('keras', 'pima_model_weights.h5'))
 print('loaded model from disk')
 
 # evaluate loaded model on test data
 loaded_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 score = loaded_model.evaluate(X, Y, verbose=0)
 
-print(f'\n {model.metrics_names[1], scores[1]*100}')
+print(f'\n {loaded_model.metrics_names[1], score[1]*100}')
