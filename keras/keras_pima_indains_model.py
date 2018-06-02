@@ -38,3 +38,19 @@ model.fit(X, Y, epochs=150, batch_size=10)
 scores = model.evaluate(X, Y)
 
 print(f'\n {model.metrics_names[1], scores[1]*100}')
+
+# Serialize model to JSON - Saving model arch into json file for later use
+model_arch = model.to_json()
+# Serialize model to YAML
+# model_arch = model.to_yaml()
+
+# Writing the model arch into a new file
+with open('pima_model_arch.json', 'w') as json_file:
+	json_file.write(model_arch)
+
+# with open('pima_model_arch.json', 'w') as yaml_file:
+# 	yaml_file.write(model_arch)
+
+# Serialize the wieghts to HDF5
+model.save_weights('pima_model_weights')
+print('Saved model weights to disk')
