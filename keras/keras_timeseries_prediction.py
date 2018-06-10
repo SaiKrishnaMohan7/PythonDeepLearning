@@ -18,7 +18,7 @@ int_maps = dict((c, i) for i, c in enumerate(alphabets))
 # map each alphabet to int for converting back
 alpha_maps = dict((i, c) for i, c in enumerate(alphabets))
 
-# Prep Dataset
+# Prep Datasetm mapping all the chars to integers
 seq = 1
 dataX = []
 dataY = []
@@ -43,17 +43,17 @@ model = Sequential()
 model.add(LSTM(32, input_shape=(X.shape[1], X.shape[2])))
 model.add(Dense(Y.shape[1], activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(X, Y, batch_size=1, verbose=2)
+model.fit(X, Y, epochs=500,batch_size=1, verbose=2)
 
 # summarize performance of the model
 scores = model.evaluate(X, Y, verbose=0)
 print('Model Accuracy: %.2f%%' % (scores[1]*100))
 
-for pattern in X:
-  x = np.reshape(1, len(pattern), 1)
+for pattern in dataX:
+  x = np.reshape(pattern,(1, len(pattern), 1))
   x = x / float(len(alphabets))
   prediction = model.predict(x, verbose=0)
   index = np.argmax(prediction)
-  result = int_maps[index]
-  seq_in = [int_maps[value] for value in pattern]
+  result = alpha_maps[index]
+  seq_in = [alpha_maps[value] for value in pattern]
   print(seq_in, '->', result)
