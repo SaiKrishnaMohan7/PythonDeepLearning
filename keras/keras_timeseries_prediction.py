@@ -31,7 +31,7 @@ for i in range(0, len(alphabets) - seq, 1):
   print(seq_in, '->', seq_out)
 
 # Reshaping data to a format acceptable by LSTM networks [samples, time steps, features]
-X = np.reshape(dataX, (len(dataX), 1, seq))
+X = np.reshape(dataX, (len(dataX), seq, 1))
 # normalize input
 X = X / float(len(alphabets))
 
@@ -50,7 +50,7 @@ scores = model.evaluate(X, Y, verbose=0)
 print('Model Accuracy: %.2f%%' % (scores[1]*100))
 
 for pattern in dataX:
-  x = np.reshape(pattern,(1, 1,len(pattern)))
+  x = np.reshape(pattern,(1, len(pattern), 1))
   x = x / float(len(alphabets))
   prediction = model.predict(x, verbose=0)
   index = np.argmax(prediction)
