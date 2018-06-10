@@ -19,7 +19,7 @@ int_maps = dict((c, i) for i, c in enumerate(alphabets))
 alpha_maps = dict((i, c) for i, c in enumerate(alphabets))
 
 # Prep Datasetm mapping all the chars to integers
-seq = 
+seq = 1
 dataX = []
 dataY = []
 
