@@ -19,7 +19,7 @@ int_maps = dict((c, i) for i, c in enumerate(alphabets))
 alpha_maps = dict((i, c) for i, c in enumerate(alphabets))
 
 # Prep Datasetm mapping all the chars to integers
-seq = 3
+seq = 
 dataX = []
 dataY = []
 
@@ -43,7 +43,7 @@ model = Sequential()
 model.add(LSTM(32, input_shape=(X.shape[1], X.shape[2])))
 model.add(Dense(Y.shape[1], activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(X, Y, epochs=500,batch_size=1, verbose=2)
+model.fit(X, Y, epochs=500, batch_size=len(dataX), verbose=2, shuffle=False)
 
 # summarize performance of the model
 scores = model.evaluate(X, Y, verbose=0)
