@@ -19,7 +19,7 @@ int_maps = dict((c, i) for i, c in enumerate(alphabets))
 alpha_maps = dict((i, c) for i, c in enumerate(alphabets))
 
 # Prep Datasetm mapping all the chars to integers
-seq = 1
+seq = 3
 dataX = []
 dataY = []
 
@@ -31,7 +31,7 @@ for i in range(0, len(alphabets) - seq, 1):
   print(seq_in, '->', seq_out)
 
 # Reshaping data to a format acceptable by LSTM networks [samples, time steps, features]
-X = np.reshape(dataX, (len(dataX), seq, 1))
+X = np.reshape(dataX, (len(dataX), 1, seq))
 # normalize input
 X = X / float(len(alphabets))
 
@@ -50,7 +50,7 @@ scores = model.evaluate(X, Y, verbose=0)
 print('Model Accuracy: %.2f%%' % (scores[1]*100))
 
 for pattern in dataX:
-  x = np.reshape(pattern,(1, len(pattern), 1))
+  x = np.reshape(pattern,(1, 1,len(pattern)))
   x = x / float(len(alphabets))
   prediction = model.predict(x, verbose=0)
   index = np.argmax(prediction)
